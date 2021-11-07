@@ -6,7 +6,7 @@
                 <h2>Idem Computer Park</h2>
             </div>
             <div class="pull-right">
-                <a class="btn btn-success" href="{{ route('computers.create') }}"> Create New Product</a>
+                <a class="btn btn-success" href="{{ route('computers.create') }}"> Ajouter une référence</a>
             </div>
         </div>
     </div>
@@ -32,11 +32,11 @@
                 <td>{{ $computer->comment }}</td>
                 <td>
                     <form action="{{ route('computers.destroy', $computer->id) }}" method="POST">
-                        <a class="btn btn-info" href="{{ route('computers.show', $computer->id) }}">Show</a>
-                        <a class="btn btn-primary" href="{{ route('computers.edit', $computer->id) }}">Edit</a>
+                        <a class="btn btn-info" href="{{ route('computers.show', $computer->id) }}">Voir</a>
+                        <a class="btn btn-primary" href="{{ route('computers.edit', $computer->id) }}">Editer</a>
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="btn btn-danger">Delete</button>
+                        <button type="submit" class="btn btn-danger">Supprimer</button>
                     </form>
                 </td>
             </tr>
