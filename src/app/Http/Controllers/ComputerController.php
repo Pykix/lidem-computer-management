@@ -77,7 +77,7 @@ class ComputerController extends Controller
      */
     public function edit(Computer $computer)
     {
-        return view('computer.edit', compact('computer'));
+        return view('computers.edit', compact('computer'));
     }
 
     /**
