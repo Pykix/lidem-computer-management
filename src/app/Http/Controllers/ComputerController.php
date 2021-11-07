@@ -66,7 +66,7 @@ class ComputerController extends Controller
      */
     public function show(Computer $computer)
     {
-        //
+        return view('computers.show', compact('computer'));
     }
 
     /**
@@ -77,7 +77,7 @@ class ComputerController extends Controller
      */
     public function edit(Computer $computer)
     {
-        //
+        return view('computer.edit', compact('computer'));
     }
 
     /**
@@ -89,7 +89,23 @@ class ComputerController extends Controller
      */
     public function update(Request $request, Computer $computer)
     {
-        //
+        $request->validate([
+            'serial_number' => 'required',
+            'brand_id' => 'required',
+            'description' => 'required',
+        ]);
+
+        $computer->update([
+            'serial_number' => $request->serial_number,
+            'brand_id' => 1,
+            'comment' => $request->description,
+            'slug' => Str::slug($request->serial_number),
+            'is_avaible' => 1,
+            'picture' => 'https://images.saymedia-content.com/.image/ar_4:3%2Cc_fill%2Ccs_srgb%2Cfl_progressive%2Cq_auto:eco%2Cw_1200/MTc0NDY0NTMyOTQzNDgwNDU0/buying-your-first-desktop-computer.jpg'
+        ]);
+
+        return redirect()->route('computers.index')
+            ->with('success', 'Reference enregistré.');
     }
 
     /**
@@ -100,6 +116,8 @@ class ComputerController extends Controller
      */
     public function destroy(Computer $computer)
     {
-        //
+        $computer->delete();
+        return redirect()->route('computers.index')
+            ->with('success', 'Reference enregistré.');
     }
 }

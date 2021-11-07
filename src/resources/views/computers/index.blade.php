@@ -30,6 +30,15 @@
                 <td>{{ $computer->brand_id }}</td>
                 <td>{{ $computer->is_avaible }}</td>
                 <td>{{ $computer->comment }}</td>
+                <td>
+                    <form action="{{ route('computers.destroy', $computer->id) }}" method="POST">
+                        <a class="btn btn-info" href="{{ route('computers.show', $computer->id) }}">Show</a>
+                        <a class="btn btn-primary" href="{{ route('computers.edit', $computer->id) }}">Edit</a>
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                </td>
             </tr>
         @endforeach
     </table>
