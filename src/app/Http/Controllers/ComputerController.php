@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Computer;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class ComputerController extends Controller
 {
@@ -27,7 +28,7 @@ class ComputerController extends Controller
      */
     public function create()
     {
-        //
+        return view('computers.create');
     }
 
     /**
@@ -38,7 +39,23 @@ class ComputerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'serial_number' => 'required',
+            'brand_id' => 'required',
+            'description' => 'required',
+        ]);
+
+        Computer::create([
+            'serial_number' => $request->serial_number,
+            'brand_id' => 1,
+            'comment' => $request->description,
+            'slug' => Str::slug($request->serial_number),
+            'is_avaible' => 1,
+            'picture' => 'https://images.saymedia-content.com/.image/ar_4:3%2Cc_fill%2Ccs_srgb%2Cfl_progressive%2Cq_auto:eco%2Cw_1200/MTc0NDY0NTMyOTQzNDgwNDU0/buying-your-first-desktop-computer.jpg'
+        ]);
+
+        return redirect()->route('computers.index')
+            ->with('success', 'Reference enregistré.');
     }
 
     /**
