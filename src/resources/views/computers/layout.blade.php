@@ -11,7 +11,7 @@
 </head>
 
 <body>
-    <div class="container p-4 mt-5 border border-primary shadow-lg p-3 mb-5 rounded">
+    <div class="container p-4 mt-5 shadow-lg p-3 mb-5 rounded">
         @yield('content')
     </div>
 </body>

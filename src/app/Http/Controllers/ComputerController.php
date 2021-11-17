@@ -15,7 +15,7 @@ class ComputerController extends Controller
      */
     public function index()
     {
-        $computers = Computer::latest()->paginate(4);
+        $computers = Computer::with('brand')->paginate(25);
 
         return view('computers.index', compact('computers'))
             ->with('i', request()->input('page', 1), -1 * 4);

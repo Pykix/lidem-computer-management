@@ -16,4 +16,9 @@ class Computer extends Model
         'brand_id',
         'picture'
     ];
+
+    public function brand()
+    {
+        return $this->belongsTo('App\Models\Brand');
+    }
 }
