@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Brand;
 use App\Models\Computer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -15,7 +16,7 @@ class ComputerController extends Controller
      */
     public function index()
     {
-        $computers = Computer::with('brand')->paginate(25);
+        $computers = Computer::with('brand')->latest()->paginate(25);
 
         return view('computers.index', compact('computers'))
             ->with('i', request()->input('page', 1), -1 * 4);
@@ -28,7 +29,8 @@ class ComputerController extends Controller
      */
     public function create()
     {
-        return view('computers.create');
+        $brands = Brand::all();
+        return view('computers.create', compact('brands'));
     }
 
     /**
@@ -47,7 +49,7 @@ class ComputerController extends Controller
 
         Computer::create([
             'serial_number' => $request->serial_number,
-            'brand_id' => 1,
+            'brand_id' => $request->brand_id,
             'comment' => $request->description,
             'slug' => Str::slug($request->serial_number),
             'is_avaible' => 1,

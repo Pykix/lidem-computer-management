@@ -22,30 +22,32 @@
             </ul>
         </div>
     @endif
-    <form action="{{ route('computers.store') }}" method="POST">
+    <form action="{{ route('computers.store') }}" method="POST" class="row g-3">
         @csrf
-        <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group">
-                    <strong>Numero de serie:</strong>
-                    <input type="text" name="serial_number" class="form-control" placeholder="XXXX-XXXX">
-                </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="serial-number" class="form-label">Numero de série</label>
+                <input type="text" name="serial_number" id="serial-number" class="form-control" placeholder="XXXX-XXXX">
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group">
-                    <strong>Marque:</strong>
-                    <input type="text" name="brand_id" class="form-control" placeholder="Asus, HP...">
-                </div>
+        </div>
+        <div class="col-md-6">
+            <label for="brand" class="form-label">
+                Marque
+            </label>
+            <select class="form-select" id="brand" aria-label="Default select example" name="brand_id">
+                @foreach ($brands as $brand)
+                    <option value="{{ $brand->id }}">{{ $brand->name }}</option>
+                @endforeach
+            </select>
+        </div>
+        <div class="col-md-12">
+            <div class="form-group">
+                <label for="desc" class="form-label">Description</label>
+                <input type="text" id="desc" name="description" class="form-control" placeholder="Description">
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group">
-                    <strong>Description:</strong>
-                    <input type="text" name="description" class="form-control" placeholder="Name">
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12 text-center">
+            <button type="submit" class="btn btn-primary">Submit</button>
         </div>
     </form>
 

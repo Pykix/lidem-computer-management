@@ -45,7 +45,7 @@
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Marque:</strong>
-                    <input type="text" name="brand_id" value="{{ $computer->brand_id }}" class="form-control"
+                    <input type="text" name="brand_id" value="{{ $computer->brand->name }}" class="form-control"
                         placeholder="Asus, Apple, Hp...">
                 </div>
             </div>
