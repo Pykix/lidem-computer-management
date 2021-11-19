@@ -15,12 +15,22 @@ class ComputerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $computers = Computer::latest()->paginate(25);
+        if ($request->filter == "1") {
+            $computers = Computer::where('is_avaible', "=", 1)->paginate(25);
+            return view('computers.index', compact('computers'))
+                ->with('i', request()->input('page', 1), -1 * 4);
+        } elseif ($request->filter == "0") {
+            $computers = Computer::where('is_avaible', "=", 0)->paginate(25);
+            return view('computers.index', compact('computers'))
+                ->with('i', request()->input('page', 1), -1 * 4);
+        } else {
+            $computers = Computer::latest()->paginate(25);
 
-        return view('computers.index', compact('computers'))
-            ->with('i', request()->input('page', 1), -1 * 4);
+            return view('computers.index', compact('computers'))
+                ->with('i', request()->input('page', 1), -1 * 4);
+        }
     }
 
     /**
