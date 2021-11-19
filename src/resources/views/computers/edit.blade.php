@@ -42,12 +42,15 @@
                         placeholder="XXXX-XXXX">
                 </div>
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group">
-                    <strong>Marque:</strong>
-                    <input type="text" name="brand_id" value="{{ $computer->brand->name }}" class="form-control"
-                        placeholder="Asus, Apple, Hp...">
-                </div>
+            <div class="col-md-6">
+                <label for="brand" class="form-label">
+                    Marque
+                </label>
+                <select class="form-select" id="brand" aria-label="Default select example" name="brand_id">
+                    @foreach ($brands as $brand)
+                        <option value="{{ $brand->id }}">{{ $brand->name }}</option>
+                    @endforeach
+                </select>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">

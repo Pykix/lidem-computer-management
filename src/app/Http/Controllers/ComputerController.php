@@ -16,7 +16,7 @@ class ComputerController extends Controller
      */
     public function index()
     {
-        $computers = Computer::with('brand')->latest()->paginate(25);
+        $computers = Computer::latest()->paginate(25);
 
         return view('computers.index', compact('computers'))
             ->with('i', request()->input('page', 1), -1 * 4);
@@ -79,7 +79,8 @@ class ComputerController extends Controller
      */
     public function edit(Computer $computer)
     {
-        return view('computers.edit', compact('computer'));
+        $brands = Brand::all();
+        return view('computers.edit', compact('computer', 'brands'));
     }
 
     /**
@@ -99,7 +100,7 @@ class ComputerController extends Controller
 
         $computer->update([
             'serial_number' => $request->serial_number,
-            'brand_id' => 1,
+            'brand_id' => $request->brand_id,
             'comment' => $request->description,
             'slug' => Str::slug($request->serial_number),
             'is_avaible' => 1,

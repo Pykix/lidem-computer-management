@@ -21,4 +21,9 @@ class Computer extends Model
     {
         return $this->belongsTo('App\Models\Brand');
     }
+
+    public function components()
+    {
+        return $this->belongsToMany(Component::class);
+    }
 }

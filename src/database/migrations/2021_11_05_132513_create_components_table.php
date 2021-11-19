@@ -21,12 +21,12 @@ class CreateComponentsTable extends Migration
             $table->timestamps();
         });
 
-        Schema::create('computers_components', function (Blueprint $table) {
+        Schema::create('component_computer', function (Blueprint $table) {
             $table->unsignedInteger('computer_id');
             $table->unsignedInteger('component_id');
         });
 
-        Schema::table('computers_components', function (Blueprint $table) {
+        Schema::table('component_computer', function (Blueprint $table) {
             $table->foreign('computer_id')->references('id')->on('computers')->onDelete('set null');
             $table->foreign('component_id')->references('id')->on('components')->onDelete('set null');
         });

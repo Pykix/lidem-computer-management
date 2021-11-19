@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Role;
+
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -19,7 +19,8 @@ class DatabaseSeeder extends Seeder
                 BrandSeeder::class,
                 ComputerSeeder::class,
                 RoleSeeder::class,
-                UserSeeder::class
+                UserSeeder::class,
+                ComponentSeeder::class
             ]
         );
     }
