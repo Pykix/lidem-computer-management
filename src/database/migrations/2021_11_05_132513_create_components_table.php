@@ -27,8 +27,8 @@ class CreateComponentsTable extends Migration
         });
 
         Schema::table('component_computer', function (Blueprint $table) {
-            $table->foreign('computer_id')->references('id')->on('computers')->onDelete('set null');
-            $table->foreign('component_id')->references('id')->on('components')->onDelete('set null');
+            $table->foreign('computer_id')->references('id')->on('computers')->onDelete('cascade');
+            $table->foreign('component_id')->references('id')->on('components')->onDelete('cascade');
         });
     }
 

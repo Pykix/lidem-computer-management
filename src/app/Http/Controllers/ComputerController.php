@@ -95,8 +95,9 @@ class ComputerController extends Controller
      */
     public function edit(Computer $computer)
     {
+        $components = Component::all();
         $brands = Brand::all();
-        return view('computers.edit', compact('computer', 'brands'));
+        return view('computers.edit', compact('computer', 'brands', 'components'));
     }
 
     /**
@@ -123,6 +124,9 @@ class ComputerController extends Controller
             'picture' => 'https://images.saymedia-content.com/.image/ar_4:3%2Cc_fill%2Ccs_srgb%2Cfl_progressive%2Cq_auto:eco%2Cw_1200/MTc0NDY0NTMyOTQzNDgwNDU0/buying-your-first-desktop-computer.jpg'
         ]);
 
+        foreach ($request->brands_ids as $brand) {
+            $computer->components()->attach($brand);
+        }
         return redirect()->route('computers.index')
             ->with('success', 'Reference enregistré.');
     }

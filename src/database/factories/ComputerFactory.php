@@ -28,7 +28,7 @@ class ComputerFactory extends Factory
             'comment' => $this->faker->text(200),
             'is_avaible' => $this->faker->boolean(),
             'brand_id' => $this->faker->numberBetween(1, 5),
-            'picture' => $this->faker->url()
+            'picture' => 'https://images.saymedia-content.com/.image/ar_4:3%2Cc_fill%2Ccs_srgb%2Cfl_progressive%2Cq_auto:eco%2Cw_1200/MTc0NDY0NTMyOTQzNDgwNDU0/buying-your-first-desktop-computer.jpg'
         ];
     }
 }

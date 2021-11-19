@@ -59,6 +59,26 @@
                         placeholder="Blablabla">
                 </div>
             </div>
+            @foreach ($components as $component)
+
+                @if ($computer->components->contains('id', $component->id))
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="brands_ids[]" value="{{ $component->id }}"
+                            id="{{ $component->serial_number }}" checked>
+                        <label class="form-check-label" for="{{ $component->serial_number }}">
+                            {{ $component->comment }}
+                        </label>
+                    </div>
+                @else
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="brands_ids[]" value="{{ $component->id }}"
+                            id="{{ $component->serial_number }}">
+                        <label class="form-check-label" for="{{ $component->serial_number }}">
+                            {{ $component->comment }}
+                        </label>
+                    </div>
+                @endif
+            @endforeach
             <div class="col-xs-12 col-sm-12 col-md-12 text-center">
                 <button type="submit" class="btn btn-primary">Modifier</button>
             </div>

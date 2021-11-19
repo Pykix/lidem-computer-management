@@ -31,7 +31,12 @@
                 <tr>
                     <td>{{ $computer->serial_number }}</td>
                     <td>{{ $computer->brand->name }}</td>
-                    <td>{{ $computer->is_avaible }}</td>
+                    @if ($computer->is_avaible)
+                        <td>Oui</td>
+                    @else
+                        <td>Non</td>
+                    @endif
+
                     <td>{{ $computer->comment }}</td>
                     <td>
                         <form action="{{ route('computers.destroy', $computer->id) }}" method="POST"

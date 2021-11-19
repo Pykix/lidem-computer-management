@@ -20,11 +20,11 @@ class CreateBrandsTable extends Migration
         });
 
         Schema::table('computers', function (Blueprint $table) {
-            $table->foreign('brand_id')->references('id')->on('brands')->onDelete('set null');
+            $table->foreign('brand_id')->references('id')->on('brands')->onDelete('cascade');
         });
 
         Schema::table('components', function (Blueprint $table) {
-            $table->foreign('brand_id')->references('id')->on('brands')->onDelete('set null');
+            $table->foreign('brand_id')->references('id')->on('brands')->onDelete('cascade');
         });
     }
 
