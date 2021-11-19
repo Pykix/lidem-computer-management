@@ -47,6 +47,14 @@
                                 <th class="pl-0 w-25" scope="row"><strong>Description</strong></th>
                                 <td>{{ $computer->comment }}</td>
                             </tr>
+                            <tr>
+                                <th class="pl-0 w-25" scope="row"><strong>Materiel</strong></th>
+                                @foreach ($computer->components as $component)
+
+                                    <td>{{ $component->comment }}</td>
+
+                                @endforeach
+                            </tr>
                         </tbody>
                     </table>
                 </div>

@@ -46,6 +46,15 @@
                 <input type="text" id="desc" name="description" class="form-control" placeholder="Description">
             </div>
         </div>
+        @foreach ($components as $component)
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="brands_ids[]" value="{{ $component->id }}"
+                    id="{{ $component->serial_number }}">
+                <label class="form-check-label" for="{{ $component->serial_number }}">
+                    {{ $component->comment }}
+                </label>
+            </div>
+        @endforeach
         <div class="col-xs-12 col-sm-12 col-md-12 text-center">
             <button type="submit" class="btn btn-primary">Submit</button>
         </div>

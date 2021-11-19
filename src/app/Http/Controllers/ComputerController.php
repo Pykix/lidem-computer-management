@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Brand;
+use App\Models\Component;
 use App\Models\Computer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -29,8 +30,9 @@ class ComputerController extends Controller
      */
     public function create()
     {
+        $components = Component::all();
         $brands = Brand::all();
-        return view('computers.create', compact('brands'));
+        return view('computers.create', compact('brands', 'components'));
     }
 
     /**
@@ -41,21 +43,35 @@ class ComputerController extends Controller
      */
     public function store(Request $request)
     {
+
         $request->validate([
             'serial_number' => 'required',
             'brand_id' => 'required',
             'description' => 'required',
         ]);
 
-        Computer::create([
-            'serial_number' => $request->serial_number,
-            'brand_id' => $request->brand_id,
-            'comment' => $request->description,
-            'slug' => Str::slug($request->serial_number),
-            'is_avaible' => 1,
-            'picture' => 'https://images.saymedia-content.com/.image/ar_4:3%2Cc_fill%2Ccs_srgb%2Cfl_progressive%2Cq_auto:eco%2Cw_1200/MTc0NDY0NTMyOTQzNDgwNDU0/buying-your-first-desktop-computer.jpg'
-        ]);
+        // $computer = Computer::create([
+        //     'serial_number' => $request->serial_number,
+        //     'brand_id' => $request->brand_id,
+        //     'comment' => $request->description,
+        //     'slug' => Str::slug($request->serial_number),
+        //     'is_avaible' => 1,
+        //     'picture' => 'https://images.saymedia-content.com/.image/ar_4:3%2Cc_fill%2Ccs_srgb%2Cfl_progressive%2Cq_auto:eco%2Cw_1200/MTc0NDY0NTMyOTQzNDgwNDU0/buying-your-first-desktop-computer.jpg'
+        // ]);
+        $computer = new Computer();
+        $computer->serial_number = $request->serial_number;
+        $computer->brand_id = $request->brand_id;
+        $computer->comment = $request->description;
+        $computer->slug = Str::slug($request->serial_number);
+        $computer->is_avaible = 1;
+        $computer->picture = 'https://images.saymedia-content.com/.image/ar_4:3%2Cc_fill%2Ccs_srgb%2Cfl_progressive%2Cq_auto:eco%2Cw_1200/MTc0NDY0NTMyOTQzNDgwNDU0/buying-your-first-desktop-computer.jpg';
 
+        $computer->save();
+        foreach ($request->brands_ids as $brand) {
+            $computer->components()->attach($brand);
+        }
+
+        $computer->save();
         return redirect()->route('computers.index')
             ->with('success', 'Reference enregistré.');
     }
