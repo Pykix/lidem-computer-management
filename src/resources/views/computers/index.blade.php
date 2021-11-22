@@ -1,5 +1,9 @@
-@extends('computers.layout')
-@section('content')
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('IDEM computer admin panel') }}
+        </h2>
+    </x-slot>
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
@@ -69,4 +73,4 @@
         {{ $computers->links('pagination::bootstrap-4') }}
     </div>
 
-@endsection
+</x-app-layout>

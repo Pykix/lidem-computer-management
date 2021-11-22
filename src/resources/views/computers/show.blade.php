@@ -61,7 +61,7 @@
                 <hr>
 
 
-                <button type="button" class="btn btn-primary btn-md mr-1 mb-2">Réserver</button>
+                <button type="button" class="btn btn-primary btn-md mr-1 mb-2">Demander une reservation</button>
             </div>
         </div>
 
