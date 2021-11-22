@@ -74,21 +74,22 @@
                                         aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    <form action="" method="post">
+                                    <form action="{{ route('pendinglends.store') }}" method="post">
+                                        @csrf
                                         <input type="text" name="daterange" />
+                                        <button type="submit" class="btn btn-primary">Envoyer la demande</button>
+                                    </form>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-bs-dismiss="modal">Annuler</button>
+
+                                    </div>
 
                                 </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary"
-                                        data-bs-dismiss="modal">Annuler</button>
-                                    <button type="button" class="btn btn-primary">Envoyer la demande</button>
-                                </div>
-                                </form>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
         </section>
     </div>

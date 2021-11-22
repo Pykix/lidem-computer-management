@@ -16,7 +16,7 @@ class PendingLendController extends Controller
     {
         $pendingLends = PendingLend::latest()->paginate(25);
 
-        return view('pendingLends.index', compact('pendingLends'))
+        return view('pending-lends.index', compact('pendingLends'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
@@ -38,7 +38,11 @@ class PendingLendController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd($request->all());
+        $pendingLend = new PendingLend();
+
+        $pendingLend->user_id = $request->user_id;
+        $pendingLend->computer_id = $request->computer_id;
     }
 
     /**

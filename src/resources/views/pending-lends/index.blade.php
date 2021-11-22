@@ -15,11 +15,11 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($users as $user)
+                @foreach ($pendingLends as $lend)
                     <tr>
-                        <td>{{ $user->name }}</td>
-                        <td>{{ $user->email }}</td>
-                        <td>{{ $user->role->name }}</td>
+                        <td>{{ $pendingLend->user->name }}</td>
+                        <td>{{ $pendingLend->request_start_date }} - {{ $pendingLend->request_end_date }}</td>
+                        <td>{{ $pendingLend->computer->serial_number }}</td>
 
                         <td>
                             <div class="dropdown">
@@ -27,19 +27,19 @@
                                     data-bs-toggle="dropdown" aria-expanded="false">
                                     Actions
                                 </button>
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                    <form action="{{ route('users.destroy', $user->id) }}" method="POST"
+                                {{-- <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                    <form action="{{ route('pendingLends.destroy', $pendingLend->id) }}" method="POST"
                                         class="form-group inline">
                                         <a class="btn btn-info form-control my-1 dropdown-item"
-                                            href="{{ route('users.show', $user->id) }}">Voir</a>
+                                            href="{{ route('pendingLends.show', $pendingLend->id) }}">Voir</a>
                                         <a class="btn btn-primary form-control my-1 dropdown-item"
-                                            href="{{ route('users.edit', $user->id) }}">Editer</a>
+                                            href="{{ route('pendingLends.edit', $pendingLend->id) }}">Editer</a>
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit"
                                             class="btn btn-danger form-control my-1 dropdown-item">Supprimer</button>
                                     </form>
-                                </div>
+                                </div> --}}
                             </div>
                         </td>
                     </tr>
@@ -49,7 +49,7 @@
 
 
         <div class="d-flex justify-content-center pagination-lg">
-            {{ $users->links('pagination::bootstrap-4') }}
+            {{ $pendingLends->links('pagination::bootstrap-4') }}
         </div>
     </div>
 </x-app-layout>
