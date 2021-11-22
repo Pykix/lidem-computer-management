@@ -14,8 +14,12 @@ class PendingLendController extends Controller
      */
     public function index()
     {
-        $pendingLends = PendingLend::latest()->paginate(25);
-
+        $user = auth()->user();
+        if ($user->role->name == 'admin') {
+            $pendingLends = PendingLend::latest()->paginate(25);
+        } else {
+            $pendingLends = PendingLend::where('user_id', '=', $user->id)->paginate(25);
+        }
         return view('pending-lends.index', compact('pendingLends'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
