@@ -18,6 +18,9 @@
                     <x-nav-link :href="route('computers.index')" :active="request()->routeIs('computers.index')">
                         {{ __('Ordinateurs') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('users.index')" :active="request()->routeIs('users.index')">
+                        {{ __('Utilisateurs') }}
+                    </x-nav-link>
                 </div>
             </div>
 
