@@ -28,7 +28,7 @@
                 <tr>
                     <th>Nom</th>
                     <th>Email</th>
-                    <th>Administrateur</th>
+                    <th>Role</th>
                 </tr>
             </thead>
             <tbody>
@@ -36,11 +36,8 @@
                     <tr>
                         <td>{{ $user->name }}</td>
                         <td>{{ $user->email }}</td>
-                        @if ($user->role_id == 2)
-                            <td>Oui</td>
-                        @else
-                            <td>Non</td>
-                        @endif
+                        <td>{{ $user->role->name }}</td>
+
                         <td>
                             <div class="dropdown">
                                 <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1"
