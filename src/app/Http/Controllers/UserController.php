@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -27,7 +29,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('products.create');
+        $roles = Role::all();
+        return view('users.create', compact('roles'));
     }
 
     /**
@@ -38,7 +41,20 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required',
+            'email' => 'required|email',
+            'password' => 'required|min:8',
+            'repassword' => 'required|same:password',
+            'role_id' => 'required',
+        ]);
+        $inputs = $request->all();
+        $inputs['password'] = Hash::make($inputs['password']);
+
+        User::create($inputs);
+
+        return redirect()->route('users.index')
+            ->with('success', 'Utilisateur enregistré.');
     }
 
     /**
@@ -60,7 +76,8 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        //
+        $roles = Role::all();
+        return view('users.edit', compact('user', 'roles'));
     }
 
     /**
@@ -72,7 +89,17 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required',
+            'email' => 'required|email',
+            'role_id' => 'required',
+        ]);
+
+
+        $user->update($request->all());
+
+        return redirect()->route('users.index')
+            ->with('success', 'Utilisateur modifié.');
     }
 
     /**

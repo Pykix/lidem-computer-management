@@ -17,18 +17,19 @@ class ComputerController extends Controller
      */
     public function index(Request $request)
     {
+        $user = $request->user();
         if ($request->filter == "1") {
             $computers = Computer::where('is_avaible', "=", 1)->paginate(25);
-            return view('computers.index', compact('computers'))
+            return view('computers.index', compact('computers', 'user'))
                 ->with('i', request()->input('page', 1), -1 * 4);
         } elseif ($request->filter == "0") {
             $computers = Computer::where('is_avaible', "=", 0)->paginate(25);
-            return view('computers.index', compact('computers'))
+            return view('computers.index', compact('computers', 'user'))
                 ->with('i', request()->input('page', 1), -1 * 4);
         } else {
             $computers = Computer::latest()->paginate(25);
 
-            return view('computers.index', compact('computers'))
+            return view('computers.index', compact('computers', 'user'))
                 ->with('i', request()->input('page', 1), -1 * 4);
         }
     }
