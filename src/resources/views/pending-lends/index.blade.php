@@ -15,10 +15,11 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($pendingLends as $lend)
+                @foreach ($pendingLends as $pendingLend)
                     <tr>
                         <td>{{ $pendingLend->user->name }}</td>
-                        <td>{{ $pendingLend->request_start_date }} - {{ $pendingLend->request_end_date }}</td>
+                        <td>{{ $pendingLend->request_start_date }} -
+                            {{ $pendingLend->request_end_date }}</td>
                         <td>{{ $pendingLend->computer->serial_number }}</td>
 
                         <td>

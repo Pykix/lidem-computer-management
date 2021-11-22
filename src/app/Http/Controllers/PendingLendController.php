@@ -38,12 +38,21 @@ class PendingLendController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
+        $dates = str_replace(" ", "", $request->daterange);
+        list($startDate, $endDate) = explode("-", $dates);
+
         $user = auth()->user();
         $pendingLend = new PendingLend();
 
         $pendingLend->user_id = $user->id;
         $pendingLend->computer_id = $request->computer_id;
+        $pendingLend->request_start_date = $startDate;
+        $pendingLend->request_end_date = $endDate;
+        $pendingLend->is_accepted = false;
+
+        $pendingLend->save();
+        return redirect()->back()
+            ->with('success', 'Reference enregistré.');
     }
 
     /**

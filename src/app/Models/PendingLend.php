@@ -18,11 +18,11 @@ class PendingLend extends Model
 
     public function user()
     {
-        $this->belongsTo(User::class);
+        return $this->belongsTo(User::class);
     }
 
     public function computer()
     {
-        $this->belongsTo(Computer::class);
+        return $this->belongsTo(Computer::class);
     }
 }
