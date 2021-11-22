@@ -76,6 +76,7 @@
                                 <div class="modal-body">
                                     <form action="{{ route('pendinglends.store') }}" method="post">
                                         @csrf
+                                        <input type="hidden" name="computer_id" value="{{ $computer->id }}">
                                         <input type="text" name="daterange" />
                                         <button type="submit" class="btn btn-primary">Envoyer la demande</button>
                                     </form>

@@ -39,9 +39,10 @@ class PendingLendController extends Controller
     public function store(Request $request)
     {
         dd($request->all());
+        $user = auth()->user();
         $pendingLend = new PendingLend();
 
-        $pendingLend->user_id = $request->user_id;
+        $pendingLend->user_id = $user->id;
         $pendingLend->computer_id = $request->computer_id;
     }
 
