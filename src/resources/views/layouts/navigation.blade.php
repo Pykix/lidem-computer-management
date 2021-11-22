@@ -21,7 +21,7 @@
                     <x-nav-link :href="route('users.index')" :active="request()->routeIs('users.index')">
                         {{ __('Utilisateurs') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('pendinglends.index')" :active="request()->routeIs('users.index')">
+                    <x-nav-link :href="route('pendinglends.index')" :active="request()->routeIs('pendinglends.index')">
                         {{ __('Demande de pret') }}
                     </x-nav-link>
                 </div>

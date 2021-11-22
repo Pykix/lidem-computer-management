@@ -97,6 +97,9 @@ class PendingLendController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $pendingLend = PendingLend::find($id);
+        $pendingLend->delete();
+        return redirect()->route('pendinglends.index')
+            ->with('success', 'Demande annulée.');
     }
 }

@@ -28,26 +28,22 @@
                                     data-bs-toggle="dropdown" aria-expanded="false">
                                     Actions
                                 </button>
-                                {{-- <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                    <form action="{{ route('pendingLends.destroy', $pendingLend->id) }}" method="POST"
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                    <form action="{{ route('pendinglends.destroy', $pendingLend->id) }}" method="POST"
                                         class="form-group inline">
-                                        <a class="btn btn-info form-control my-1 dropdown-item"
-                                            href="{{ route('pendingLends.show', $pendingLend->id) }}">Voir</a>
-                                        <a class="btn btn-primary form-control my-1 dropdown-item"
-                                            href="{{ route('pendingLends.edit', $pendingLend->id) }}">Editer</a>
+                                        <a class="btn btn-success form-control my-1 dropdown-item" href="#">Accepter</a>
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit"
-                                            class="btn btn-danger form-control my-1 dropdown-item">Supprimer</button>
+                                            class="btn btn-danger form-control my-1 dropdown-item">Refuser</button>
                                     </form>
-                                </div> --}}
+                                </div>
                             </div>
                         </td>
                     </tr>
                 @endforeach
             </tbody>
         </table>
-
 
         <div class="d-flex justify-content-center pagination-lg">
             {{ $pendingLends->links('pagination::bootstrap-4') }}
