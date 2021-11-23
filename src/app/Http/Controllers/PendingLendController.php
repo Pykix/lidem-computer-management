@@ -31,7 +31,6 @@ class PendingLendController extends Controller
      */
     public function create()
     {
-        //
     }
 
     /**
