@@ -8,4 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Breakdown extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'label',
+        'type'
+    ];
+
+    public function repairs()
+    {
+        $this->belongsToMany(Repair::class);
+    }
 }

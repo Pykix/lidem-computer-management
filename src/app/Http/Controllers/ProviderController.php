@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Provider;
 use Illuminate\Http\Request;
 
 class ProviderController extends Controller
@@ -13,7 +14,9 @@ class ProviderController extends Controller
      */
     public function index()
     {
-        //
+        $providers = Provider::latest()->paginate(25);
+        return view('providers.index', compact('providers'))
+            ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     /**
@@ -23,7 +26,7 @@ class ProviderController extends Controller
      */
     public function create()
     {
-        //
+        return view('providers.create');
     }
 
     /**
@@ -34,7 +37,23 @@ class ProviderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $request->validate([
+            'name' => 'required',
+            'address' => 'required',
+            'country' => 'required',
+            'phone' => 'required',
+            'siret' => 'required',
+            'is_intern' => 'required',
+        ]);
+        $inputs = $request->all();
+        if ($inputs['is_intern'] == null) {
+            $inputs['is_intern'] = 0;
+        }
+        Provider::create($inputs);
+
+        return redirect()->route('providers.index')
+            ->with('success', 'Prestataire ajouté');
     }
 
     /**
@@ -45,7 +64,8 @@ class ProviderController extends Controller
      */
     public function show($id)
     {
-        //
+        $provider = Provider::find($id);
+        return view('providers.show', compact('provider'));
     }
 
     /**
@@ -56,7 +76,8 @@ class ProviderController extends Controller
      */
     public function edit($id)
     {
-        //
+        $provider = Provider::find($id);
+        return view('providers.edit', compact('provider'));
     }
 
     /**
@@ -68,7 +89,20 @@ class ProviderController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'address' => 'required',
+            'country' => 'required',
+            'phone' => 'required',
+            'siret' => 'required',
+            'is_intern' => 'required',
+        ]);
+        $provider = Provider::find($id);
+
+        $provider->update($request->all());
+
+        return redirect()->route('providers.index')
+            ->with('success', 'Prestataire ajouté');
     }
 
     /**
@@ -79,6 +113,10 @@ class ProviderController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $provider = Provider::find($id);
+        $provider->delete();
+
+        return redirect()->route('providers.index')
+            ->with('success', 'Prestataire supprimé');
     }
 }

@@ -27,6 +27,20 @@
                     <x-nav-link :href="route('lends.index')" :active="request()->routeIs('lends.index')">
                         {{ __('Pret en cours') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('providers.index')" :active="request()->routeIs('providers.index')">
+                        {{ __('Prestataires') }}
+                    </x-nav-link>
+                    {{-- <x-nav-link-parent :href="'#'" :active="request()->routeIs('padron.*')">
+                        <x-slot name="name">Option A</x-slot>
+                        <x-slot name="children">
+                            <a href="#">Item A</a>
+                            <span class="separator"></span>
+                            <a href="#">Item B</a>
+                            <a href="#">Item C</a>
+                            <span class="separator"></span>
+                            <a href="#">Item D</a>
+                        </x-slot>
+                    </x-nav-link-parent> --}}
                 </div>
             </div>
 
