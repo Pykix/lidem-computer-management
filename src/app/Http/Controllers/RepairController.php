@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Breakdown;
+use App\Models\Computer;
+use App\Models\Provider;
+use App\Models\Repair;
 use Illuminate\Http\Request;
 
 class RepairController extends Controller
@@ -13,7 +17,9 @@ class RepairController extends Controller
      */
     public function index()
     {
-        //
+        $repairs = Repair::latest()->paginate(25);
+        return view('repairs.index', compact('repairs'))
+            ->with('i', request()->input('page', 1), -1 * 4);
     }
 
     /**
@@ -23,7 +29,11 @@ class RepairController extends Controller
      */
     public function create()
     {
-        //
+        $computers = Computer::all();
+        $providers = Provider::all();
+        $breakdowns = Breakdown::all();
+
+        return view('repairs.create', compact('computers', 'providers', 'breakdowns'));
     }
 
     /**
