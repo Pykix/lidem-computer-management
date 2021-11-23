@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Provider;
+use App\Models\Repair;
 use Illuminate\Http\Request;
 
 class ProviderController extends Controller
@@ -65,7 +66,8 @@ class ProviderController extends Controller
     public function show($id)
     {
         $provider = Provider::find($id);
-        return view('providers.show', compact('provider'));
+        $repairs = Repair::where('provider_id', '=', $id);
+        return view('providers.show', compact('provider', 'repairs'));
     }
 
     /**
@@ -102,7 +104,7 @@ class ProviderController extends Controller
         $provider->update($request->all());
 
         return redirect()->route('providers.index')
-            ->with('success', 'Prestataire ajouté');
+            ->with('success', 'Prestataire mis à jour');
     }
 
     /**

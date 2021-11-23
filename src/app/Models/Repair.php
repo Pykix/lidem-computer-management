@@ -25,4 +25,8 @@ class Repair extends Model
     {
         $this->belongsTo(Provider::class);
     }
+    public function breakdowns()
+    {
+        $this->belongsToMany(Breakdown::class);
+    }
 }

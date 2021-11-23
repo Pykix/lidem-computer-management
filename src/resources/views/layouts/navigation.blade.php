@@ -30,6 +30,9 @@
                     <x-nav-link :href="route('providers.index')" :active="request()->routeIs('providers.index')">
                         {{ __('Prestataires') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('repairs.index')" :active="request()->routeIs('repairs.index')">
+                        {{ __('Reparations') }}
+                    </x-nav-link>
                     {{-- <x-nav-link-parent :href="'#'" :active="request()->routeIs('padron.*')">
                         <x-slot name="name">Option A</x-slot>
                         <x-slot name="children">

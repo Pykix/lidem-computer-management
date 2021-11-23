@@ -44,6 +44,18 @@
                                 </button>
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
 
+                                    <form action="{{ route('providers.destroy', $provider->id) }}" method="POST"
+                                        class="form-group inline">
+                                        <a class="btn btn-info form-control my-1 dropdown-item"
+                                            href="{{ route('providers.show', $provider->id) }}">Voir</a>
+                                        <a class="btn btn-primary form-control my-1 dropdown-item"
+                                            href="{{ route('providers.edit', $provider->id) }}">Editer</a>
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit"
+                                            class="btn btn-danger form-control my-1 dropdown-item">Supprimer</button>
+                                    </form>
+
                                 </div>
                             </div>
                         </td>
