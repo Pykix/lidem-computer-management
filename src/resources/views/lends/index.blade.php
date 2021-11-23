@@ -5,7 +5,6 @@
         </h2>
     </x-slot>
     <div class="container">
-
         <table class="table table-bordered table-striped">
             <thead>
                 <tr>
@@ -15,36 +14,30 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($pendingLends as $pendingLend)
+                @foreach ($lends as $lend)
                     <tr>
-                        <td>{{ $pendingLend->user->name }}</td>
-                        <td>{{ $pendingLend->request_start_date }} -
-                            {{ $pendingLend->request_end_date }}</td>
-                        <td>{{ $pendingLend->computer->serial_number }}</td>
+                        <td>{{ $lend->user->name }}</td>
+                        <td>{{ $lend->start_date }} -
+                            {{ $lend->end_date }}</td>
+                        <td>{{ $lend->computer->serial_number }}</td>
 
-                        <td>
+                        {{-- <td>
                             <div class="dropdown">
                                 <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1"
                                     data-bs-toggle="dropdown" aria-expanded="false">
                                     Actions
                                 </button>
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                    <form action="{{ route('lends.store') }}" method="POST" class="form-group inline">
-                                        @csrf
-                                        @method('POST')
-                                        <input type="hidden" name="pendinglend" value="{{ $pendingLend->id }}">
-                                        <button type="submit"
-                                            class="btn btn-success form-control my-1 dropdown-item">Accepter</button>
-                                    </form>
-                                    <form action="{{ route('pendinglends.destroy', $pendingLend->id) }}" method="POST"
+                                    <form action="{{ route('lends.destroy', $lend->id) }}" method="POST"
                                         class="form-group inline">
+                                        <a class="btn btn-success form-control my-1 dropdown-item" href="#">Accepter</a>
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit"
                                             class="btn btn-danger form-control my-1 dropdown-item">Refuser</button>
                                     </form>
                                 </div>
-                            </div>
+                            </div> --}}
                         </td>
                     </tr>
                 @endforeach
@@ -52,7 +45,7 @@
         </table>
 
         <div class="d-flex justify-content-center pagination-lg">
-            {{ $pendingLends->links('pagination::bootstrap-4') }}
+            {{ $lends->links('pagination::bootstrap-4') }}
         </div>
     </div>
 </x-app-layout>

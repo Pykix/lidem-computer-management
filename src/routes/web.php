@@ -3,6 +3,7 @@
 use App\Http\Controllers\ComputerController;
 use App\Http\Controllers\PendingLendController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\LendController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,6 +32,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('/computers', ComputerController::class);
     Route::resource('/users', UserController::class);
     Route::resource('/pendinglends', PendingLendController::class);
+    Route::resource('/lends', LendController::class);
 });
 
 require __DIR__ . '/auth.php';
