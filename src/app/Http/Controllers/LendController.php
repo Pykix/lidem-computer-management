@@ -105,6 +105,7 @@ class LendController extends Controller
     public function destroy($id)
     {
         $lend = Lend::find($id);
+        Mail::to($lend->user->email)->send(new AcceptLendMail($lend));
         $lend->delete();
         return redirect()->route('lends.index')
             ->with('success', 'Reservation bien supprimée');

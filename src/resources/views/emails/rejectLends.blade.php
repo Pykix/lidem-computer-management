@@ -237,7 +237,7 @@
                                                                 <p style="font-size: 14px; line-height: 140%;">Votre
                                                                     demande pour l'ordinateur
                                                                     {{ $lend->computer->serial_number }}
-                                                                    viens d'être validée</p>
+                                                                    a été refusée</p>
                                                             </div>
 
                                                         </td>
@@ -248,10 +248,9 @@
 
                                                             <div
                                                                 style="line-height: 140%; text-align: left; word-wrap: break-word;">
-                                                                <p style="font-size: 14px; line-height: 140%;">Vous
-                                                                    pourrez venir le récupérer le
-                                                                    {{ $lend->start_date }}
-                                                                    à l'idem du Le Soler</p>
+                                                                <p style="font-size: 14px; line-height: 140%;">Pour plus
+                                                                    de renseignement veuillez vous rapprocher de l'idem
+                                                                </p>
                                                             </div>
 
                                                         </td>

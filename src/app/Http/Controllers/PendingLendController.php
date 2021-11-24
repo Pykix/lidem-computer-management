@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\RejectLendMail;
 use App\Models\PendingLend;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class PendingLendController extends Controller
 {
@@ -100,8 +102,9 @@ class PendingLendController extends Controller
      */
     public function destroy($id)
     {
-        $pendingLend = PendingLend::find($id);
-        $pendingLend->delete();
+        $lend = PendingLend::find($id);
+        $lend->delete();
+        Mail::to($lend->user->email)->send(new RejectLendMail($lend));
         return redirect()->route('pendinglends.index')
             ->with('success', 'Demande annulée.');
     }
