@@ -75,8 +75,7 @@
                             </x-slot>
 
                             <x-slot name="content">
-                                <x-dropdown-link :href="route('computers.index')" onclick="event.preventDefault();
-                                        this.closest('form').submit();">
+                                <x-dropdown-link :href="route('brands.index')">
                                     {{ __('Marques') }}
                                 </x-dropdown-link>
                                 <x-dropdown-link :href="route('logout')">

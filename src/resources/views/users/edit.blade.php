@@ -53,8 +53,9 @@
                     @foreach ($roles as $role)
                         @if ($user->role_id == $role->id)
                             <option selected value="{{ $role->id }}">{{ $role->name }}</option>
+                        @else
+                            <option value="{{ $role->id }}">{{ $role->name }}</option>
                         @endif
-                        <option value="{{ $role->id }}">{{ $role->name }}</option>
                     @endforeach
                 </select>
             </div>

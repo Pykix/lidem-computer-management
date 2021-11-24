@@ -21,16 +21,7 @@
                 <p>{{ $message }}</p>
             </div>
         @endif
-        <form action="{{ route('computers.index') }}" action="POST">
-            <label for="filter">Disponibilité</label>
-            <select class="form-select" name="filter" id="filter">
-                <option selected>Tous</option>
-                <option value="1">Oui</option>
-                <option value="0">Non</option>
-            </select>
-            <button type="submit" class="btn btn-primary  my-1">Filter</button>
 
-        </form>
 
         @livewire('search-computer', ['computers' => $computers])
 

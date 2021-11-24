@@ -1,7 +1,9 @@
-@extends('computers.layout')
-
-@section('content')
-
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('Modifier un ordinateur') }}
+        </h2>
+    </x-slot>
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
@@ -38,8 +40,8 @@
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Numero de série:</strong>
-                    <input type="text" name="serial_number" value="{{ $computer->serial_number }}" class="form-control"
-                        placeholder="XXXX-XXXX">
+                    <input type="text" name="serial_number" value="{{ $computer->serial_number }}"
+                        class="form-control" placeholder="XXXX-XXXX">
                 </div>
             </div>
             <div class="col-md-6">
@@ -63,16 +65,16 @@
 
                 @if ($computer->components->contains('id', $component->id))
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="brands_ids[]" value="{{ $component->id }}"
-                            id="{{ $component->serial_number }}" checked>
+                        <input class="form-check-input" type="checkbox" name="brands_ids[]"
+                            value="{{ $component->id }}" id="{{ $component->serial_number }}" checked>
                         <label class="form-check-label" for="{{ $component->serial_number }}">
                             {{ $component->comment }}
                         </label>
                     </div>
                 @else
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="brands_ids[]" value="{{ $component->id }}"
-                            id="{{ $component->serial_number }}">
+                        <input class="form-check-input" type="checkbox" name="brands_ids[]"
+                            value="{{ $component->id }}" id="{{ $component->serial_number }}">
                         <label class="form-check-label" for="{{ $component->serial_number }}">
                             {{ $component->comment }}
                         </label>
@@ -84,4 +86,4 @@
             </div>
         </div>
     </form>
-@endsection
+</x-app-layout>

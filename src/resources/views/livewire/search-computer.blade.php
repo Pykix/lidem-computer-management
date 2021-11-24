@@ -1,12 +1,11 @@
 <div>
     <div class="row mb-3 p-2">
         <div class="col-md-3">
-            <label for="">Marque</label>
-            <select wire:model="byBrand" class="form-control" id="">
-                <option value="">Aucune selection</option>
-                @foreach ($computers as $computer)
-                    <option value="{{ $computer->brand_id }}">{{ $computer->brand->name }}</option>
-                @endforeach
+            <label for="">Disponible</label>
+            <select wire:model="available" class="form-control" id="">
+                <option value="">tous</option>
+                <option value="1">Oui</option>
+                <option value="0">Non</option>
             </select>
         </div>
         <div class="col-md-3">
