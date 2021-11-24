@@ -1,6 +1,9 @@
-@extends('computers.layout')
-
-@section('content')
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('Ajout d\'un PC') }}
+        </h2>
+    </x-slot>
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
@@ -27,7 +30,8 @@
         <div class="col-md-6">
             <div class="form-group">
                 <label for="serial-number" class="form-label">Numero de série</label>
-                <input type="text" name="serial_number" id="serial-number" class="form-control" placeholder="XXXX-XXXX">
+                <input type="text" name="serial_number" id="serial-number" class="form-control"
+                    placeholder="XXXX-XXXX">
             </div>
         </div>
         <div class="col-md-6">
@@ -60,4 +64,4 @@
         </div>
     </form>
 
-@endsection
+</x-app-layout>
