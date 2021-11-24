@@ -21,18 +21,73 @@
                     <x-nav-link :href="route('users.index')" :active="request()->routeIs('users.index')">
                         {{ __('Utilisateurs') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('pendinglends.index')" :active="request()->routeIs('pendinglends.index')">
-                        {{ __('Demande de pret') }}
-                    </x-nav-link>
-                    <x-nav-link :href="route('lends.index')" :active="request()->routeIs('lends.index')">
-                        {{ __('Pret en cours') }}
-                    </x-nav-link>
-                    <x-nav-link :href="route('providers.index')" :active="request()->routeIs('providers.index')">
-                        {{ __('Prestataires') }}
-                    </x-nav-link>
+                    <div class="hidden sm:flex sm:items-center sm:ml-6">
+                        <x-dropdown align="right" width="48">
+                            <x-slot name="trigger">
+                                <button
+                                    class="flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">
+                                    <div>Prêts</div>
+
+                                    <div class="ml-1">
+                                        <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg"
+                                            viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd"
+                                                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                                clip-rule="evenodd" />
+                                        </svg>
+                                    </div>
+                                </button>
+                            </x-slot>
+
+                            <x-slot name="content">
+                                <x-dropdown-link :href="route('pendinglends.index')"
+                                    :active="request()->routeIs('pendinglends.index')">
+                                    {{ __('Demande de pret') }}
+                                </x-dropdown-link>
+                                <x-dropdown-link :href="route('lends.index')"
+                                    :active="request()->routeIs('lends.index')">
+                                    {{ __('Pret en cours') }}
+                                </x-dropdown-link>
+                            </x-slot>
+                        </x-dropdown>
+                    </div>
+
+
                     <x-nav-link :href="route('repairs.index')" :active="request()->routeIs('repairs.index')">
                         {{ __('Reparations') }}
                     </x-nav-link>
+                    <div class="hidden sm:flex sm:items-center sm:ml-6">
+                        <x-dropdown align="right" width="48">
+                            <x-slot name="trigger">
+                                <button
+                                    class="flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">
+                                    <div>Gestion annexes</div>
+
+                                    <div class="ml-1">
+                                        <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg"
+                                            viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd"
+                                                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                                clip-rule="evenodd" />
+                                        </svg>
+                                    </div>
+                                </button>
+                            </x-slot>
+
+                            <x-slot name="content">
+                                <x-dropdown-link :href="route('computers.index')" onclick="event.preventDefault();
+                                        this.closest('form').submit();">
+                                    {{ __('Marques') }}
+                                </x-dropdown-link>
+                                <x-dropdown-link :href="route('logout')">
+                                    {{ __('Type de reparations') }}
+                                </x-dropdown-link>
+                                <x-dropdown-link :href="route('providers.index')">
+                                    {{ __('Prestataires') }}
+                                </x-dropdown-link>
+                            </x-slot>
+                        </x-dropdown>
+                    </div>
                     {{-- <x-nav-link-parent :href="'#'" :active="request()->routeIs('padron.*')">
                         <x-slot name="name">Option A</x-slot>
                         <x-slot name="children">
@@ -69,7 +124,7 @@
                     <x-slot name="content">
                         <x-dropdown-link :href="route('computers.index')" onclick="event.preventDefault();
                                     this.closest('form').submit();">
-                            {{ __('Ordinateurs') }}
+                            {{ __('Profil') }}
                         </x-dropdown-link>
 
                         <!-- Authentication -->

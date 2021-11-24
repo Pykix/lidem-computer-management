@@ -104,7 +104,6 @@ class PendingLendController extends Controller
     {
         $lend = PendingLend::find($id);
         $lend->delete();
-        Mail::to($lend->user->email)->send(new RejectLendMail($lend));
         return redirect()->route('pendinglends.index')
             ->with('success', 'Demande annulée.');
     }
