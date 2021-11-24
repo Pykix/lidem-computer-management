@@ -78,7 +78,7 @@
                                 <x-dropdown-link :href="route('brands.index')">
                                     {{ __('Marques') }}
                                 </x-dropdown-link>
-                                <x-dropdown-link :href="route('logout')">
+                                <x-dropdown-link :href="route('breakdowns.index')">
                                     {{ __('Type de reparations') }}
                                 </x-dropdown-link>
                                 <x-dropdown-link :href="route('providers.index')">

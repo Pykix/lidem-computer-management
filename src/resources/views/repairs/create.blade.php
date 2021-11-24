@@ -27,8 +27,11 @@
             @method('POST')
             <div class="col-md-6">
                 <div class="form-group">
-                    <label for="phone" class="form-label">Téléphone</label>
-                    <input type="text" name="phone" id="phone" class="form-control" placeholder="666-1337-42">
+
+                    <select name="computer_id" id="">Ordinateurs</select>
+                    @foreach ($computers as $computer)
+                        <option value="{{ $computer->id }}"></option>
+                    @endforeach
                 </div>
             </div>
             <button class="btn btn-primary" type="submit">Créer</button>
