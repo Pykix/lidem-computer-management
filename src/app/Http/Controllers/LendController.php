@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Lend;
 use App\Models\PendingLend;
 use Illuminate\Http\Request;
+use App\Mail\AcceptLendMail;
+use Illuminate\Support\Facades\Mail;
 
 class LendController extends Controller
 {
@@ -54,6 +56,8 @@ class LendController extends Controller
         $lend->end_date = $pendinglend->request_end_date;
         $lend->save();
 
+
+        Mail::to($lend->user->email)->send(new AcceptLendMail($lend));
         return redirect()->route('lends.index')
             ->with('success', 'Reservation acceptée');
     }

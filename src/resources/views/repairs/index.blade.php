@@ -9,7 +9,7 @@
             <div class="col-lg-12 margin-tb">
 
                 <div class="pull-right my-4">
-                    <a class="btn btn-success" href="{{ route('repairs.create') }}"> Creer un prestataire</a>
+                    <a class="btn btn-success" href="{{ route('repairs.create') }}"> Enregistrer une reparation</a>
                 </div>
             </div>
         </div>

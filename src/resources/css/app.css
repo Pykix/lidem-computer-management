@@ -22,6 +22,14 @@
     color: #818cf8;
 }
 
+.item-list-mail {
+    list-style-type: none;
+}
+
+.item-list-mail a {
+    text-decoration: none;
+}
+
 @media (min-width: 768px) {
     .children {
         position: absolute;
