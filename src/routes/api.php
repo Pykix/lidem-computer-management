@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Resources\ComputerCollection;
+use App\Models\Computer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -16,4 +18,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+Route::get('/computers', function () {
+    $computers = Computer::paginate(10);
+    return  new ComputerCollection($computers);
 });
