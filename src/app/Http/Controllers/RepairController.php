@@ -7,6 +7,7 @@ use App\Models\Computer;
 use App\Models\Provider;
 use App\Models\Repair;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Date;
 
 class RepairController extends Controller
 {
@@ -32,6 +33,7 @@ class RepairController extends Controller
         $computers = Computer::all();
         $providers = Provider::all();
         $breakdowns = Breakdown::all();
+        dd($breakdowns);
 
         return view('repairs.create', compact('computers', 'providers', 'breakdowns'));
     }
@@ -44,7 +46,17 @@ class RepairController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $repair = new Repair();
+        $repair->computer_id = $request->computer_id;
+        $repair->provider_id = $request->provider_id;
+        $repair->supported_at = date('Y-m-d');
+        $repair->is_broken = true;
+        $repair->save();
+        $repair->breakdowns()->attach(
+            $request->breakdown_id
+        );
+        return redirect()->route('repairs.index');
     }
 
     /**

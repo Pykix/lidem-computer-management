@@ -2,12 +2,14 @@
 
 namespace App\Models;
 
+use App\Presenter\RepairPresenter;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+
 class Repair extends Model
 {
-    use HasFactory;
+    use HasFactory, RepairPresenter;
     protected $fillable = [
         'computer_id',
         'provider_id',
@@ -19,14 +21,14 @@ class Repair extends Model
 
     public function computer()
     {
-        $this->belongsTo(Computer::class);
+        return  $this->belongsTo(Computer::class);
     }
     public function provider()
     {
-        $this->belongsTo(Provider::class);
+        return $this->belongsTo(Provider::class);
     }
     public function breakdowns()
     {
-        $this->belongsToMany(Breakdown::class);
+        return $this->belongsToMany(Breakdown::class);
     }
 }

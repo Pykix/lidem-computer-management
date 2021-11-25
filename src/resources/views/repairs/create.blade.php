@@ -27,11 +27,28 @@
             @method('POST')
             <div class="col-md-6">
                 <div class="form-group">
-
-                    <select name="computer_id" id="">Ordinateurs</select>
-                    @foreach ($computers as $computer)
-                        <option value="{{ $computer->id }}"></option>
-                    @endforeach
+                    <label for="computers">Ordinateur</label>
+                    <select name="computer_id" id="computers">
+                        @foreach ($computers as $computer)
+                            <option value="{{ $computer->id }}">{{ $computer->serial_number }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="breakdowns">Probleme</label>
+                    <select name="breakdown_id" id="breakdowns">
+                        @foreach ($breakdowns as $breakdown)
+                            <option value="{{ $breakdown->id }}">{{ $breakdown->label }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="providers">Reparateur</label>
+                    <select name="providers_id" id="providers">
+                        @foreach ($providers as $provider)
+                            <option value="{{ $provider->id }}">{{ $provider->name }}</option>
+                        @endforeach
+                    </select>
                 </div>
             </div>
             <button class="btn btn-primary" type="submit">Créer</button>
