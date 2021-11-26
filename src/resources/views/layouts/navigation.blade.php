@@ -86,6 +86,7 @@
                                 </x-dropdown-link>
                             </x-slot>
                         </x-dropdown>
+
                     </div>
                     {{-- <x-nav-link-parent :href="'#'" :active="request()->routeIs('padron.*')">
                         <x-slot name="name">Option A</x-slot>
@@ -98,6 +99,9 @@
                             <a href="#">Item D</a>
                         </x-slot>
                     </x-nav-link-parent> --}}
+                    <x-nav-link :href="route('logs.index')" :active="request()->routeIs('logs.index')">
+                        {{ __('Logs') }}
+                    </x-nav-link>
                 </div>
             </div>
 

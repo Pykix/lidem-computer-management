@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Mail\RejectLendMail;
-use App\Models\PendingLend;
+use App\Models\Log;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Mail;
 
-class PendingLendController extends Controller
+class LogController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,13 +14,13 @@ class PendingLendController extends Controller
      */
     public function index()
     {
-        $user = auth()->user();
-        if ($user->role->name == 'admin') {
-            $pendingLends = PendingLend::where('is_accepted', '=', 'false')->latest()->paginate(25);
-        } else {
-            $pendingLends = PendingLend::where('user_id', '=', $user->id)->where('is_accepted', '=', 'false')->paginate(25);
+        $logs = Log::latest()->paginate(50);
+        foreach ($logs as $log) {
+            $list = explode("\\", $log->loggable_type);
+            $log->loggable_type = $list[2];
         }
-        return view('pending-lends.index', compact('pendingLends'))
+
+        return view('logs.index', compact('logs'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
@@ -33,6 +31,7 @@ class PendingLendController extends Controller
      */
     public function create()
     {
+        //
     }
 
     /**
@@ -43,25 +42,7 @@ class PendingLendController extends Controller
      */
     public function store(Request $request)
     {
-        $dates = str_replace(" ", "", $request->daterange);
-        list($startDate, $endDate) = explode("-", $dates);
-
-        $user = auth()->user();
-        $pendingLend = new PendingLend();
-
-        $pendingLend->user_id = $user->id;
-        $pendingLend->computer_id = $request->computer_id;
-        $pendingLend->request_start_date = $startDate;
-        $pendingLend->request_end_date = $endDate;
-        $pendingLend->is_accepted = false;
-
-        $pendingLend->save();
-        $pendingLend->logs()->create([
-            'user_id' => auth()->user()->id,
-            'comment' => "pending lend created"
-        ]);
-        return redirect()->back()
-            ->with('success', 'Reference enregistré.');
+        //
     }
 
     /**
@@ -106,9 +87,6 @@ class PendingLendController extends Controller
      */
     public function destroy($id)
     {
-        $lend = PendingLend::find($id);
-        $lend->delete();
-        return redirect()->route('pendinglends.index')
-            ->with('success', 'Demande annulée.');
+        //
     }
 }

@@ -56,6 +56,10 @@ class RepairController extends Controller
         $repair->breakdowns()->attach(
             $request->breakdown_id
         );
+        $repair->logs()->create([
+            'user_id' => auth()->user()->id,
+            'comment' => "repair created"
+        ]);
         return redirect()->route('repairs.index');
     }
 

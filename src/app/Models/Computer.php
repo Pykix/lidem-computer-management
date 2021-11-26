@@ -26,4 +26,9 @@ class Computer extends Model
     {
         return $this->belongsToMany(Component::class);
     }
+
+    public function logs()
+    {
+        return $this->morphMany(Log::class, 'loggable');
+    }
 }

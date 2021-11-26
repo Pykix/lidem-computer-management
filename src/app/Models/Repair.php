@@ -31,4 +31,9 @@ class Repair extends Model
     {
         return $this->belongsToMany(Breakdown::class);
     }
+
+    public function logs()
+    {
+        return $this->morphMany(Log::class, 'loggable');
+    }
 }

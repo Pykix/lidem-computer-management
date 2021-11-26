@@ -25,4 +25,9 @@ class PendingLend extends Model
     {
         return $this->belongsTo(Computer::class);
     }
+
+    public function logs()
+    {
+        return $this->morphMany(Log::class, 'loggable');
+    }
 }

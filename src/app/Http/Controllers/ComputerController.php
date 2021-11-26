@@ -83,6 +83,11 @@ class ComputerController extends Controller
         }
 
         $computer->save();
+        $computer->logs()->create([
+            'comment' => 'no data',
+            'user_id' => auth()->user()->id
+        ]);
+
         return redirect()->route('computers.index')
             ->with('success', 'Reference enregistré.');
     }
@@ -138,6 +143,10 @@ class ComputerController extends Controller
         foreach ($request->brands_ids as $brand) {
             $computer->components()->attach($brand);
         }
+        $computer->logs()->create([
+            'comment' => 'computer updated',
+            'user_id' => auth()->user()->id
+        ]);
         return redirect()->route('computers.index')
             ->with('success', 'Reference enregistré.');
     }

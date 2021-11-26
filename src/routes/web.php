@@ -6,6 +6,7 @@ use App\Http\Controllers\ComputerController;
 use App\Http\Controllers\PendingLendController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LendController;
+use App\Http\Controllers\LogController;
 use App\Http\Controllers\ProviderController;
 use App\Http\Controllers\RepairController;
 use Illuminate\Support\Facades\Route;
@@ -41,6 +42,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('/providers', ProviderController::class);
     Route::resource('/breakdowns', BreakdownController::class);
     Route::resource('/brands', BrandController::class);
+    Route::resource('/logs', LogController::class);
 });
 
 require __DIR__ . '/auth.php';

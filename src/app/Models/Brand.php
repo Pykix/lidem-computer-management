@@ -12,6 +12,9 @@ class Brand extends Model
         'name'
     ];
 
+
+
+
     public function components()
     {
         return $this->hasMany(Component::class);
